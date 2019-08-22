@@ -5,4 +5,3 @@ export const onlyRunWhen = (func, testFunc) => {
     }
   }
 };
-
