@@ -7,9 +7,7 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 
 class App extends Component {
   state = {
-    data: {
-      'https://medium.com': 10
-    }
+    data: null
   };
 
   //to load existing data on render
@@ -97,10 +95,12 @@ class App extends Component {
       <p>
       <Button variant="success" onClick = {this.handleStartTracking}>Start Tracking</Button>
       <Button variant="warning" onClick = {this.handleClearAllData}>Clear All Data</Button>
-        {
-          this.state.data !== null &&
-          <DataChart data={this.state.data} />
-        }
+     </p>
+     <p>
+     {
+       this.state.data !== null &&
+       <DataChart data={this.state.data} />
+     }
      </p>
     </Jumbotron>
     );
