@@ -2,7 +2,8 @@ import React from 'react';
 import { Component } from 'react';
 import DataChart from './DataChart';
 import Button from 'react-bootstrap/Button';
-import Jumbotron from 'react-bootstrap/Jumbotron';
+import Card from 'react-bootstrap/Card'
+
 
 
 class App extends Component {
@@ -86,20 +87,27 @@ class App extends Component {
 
   render() {
     return (
-      <Jumbotron>
-      <h2>Argus</h2>
-      <p class="card-text">Website time-tracking assistant</p>
-      <p>
-      <Button variant="success" onClick = {this.handleStartTracking}>Start Tracking</Button>
-      <Button variant="warning" onClick = {this.handleClearAllData}>Clear All Data</Button>
-     </p>
-     <p>
-     {
-       this.state.data !== null &&
-       <DataChart data={this.state.data} />
-     }
-     </p>
-    </Jumbotron>
+    <Card className="text-center">
+    <Card.Header>
+    <h3>Argus</h3>
+    <p>Website time-tracking assistant</p>
+    </Card.Header>
+     <Card.Body>
+       <Button variant="success" onClick = {this.handleStartTracking}>Start Tracking</Button>
+       <Button variant="warning" onClick = {this.handleClearAllData}>Clear All Data</Button>
+       <p>
+       {
+        this.state.data !== null &&
+        <DataChart data={this.state.data} />
+       }
+      </p>
+    </Card.Body>
+  <Card.Footer className="text-muted">
+  <small>
+  Icon made by <a href="https://www.freepik.com/">Freepik</a> from <a href="www.flaticon.com">www.flaticon.com</a>
+  </small>
+  </Card.Footer>
+  </Card>
     );
   }
 
