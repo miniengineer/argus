@@ -2,13 +2,13 @@ import React from 'react';
 import { Component } from 'react';
 import DataChart from './DataChart';
 import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card'
+
 
 
 class App extends Component {
   state = {
-    data: {
-      'https://medium.com': 10
-    }
+    data: null
   };
 
   //to load existing data on render
@@ -33,9 +33,9 @@ class App extends Component {
     const responseCallback = (response) => {
       this.setState({
         data: response
-      }) 
+      })
     }
-  
+
     // eslint-disable-next-line no-undef
     chrome.runtime.sendMessage(message, responseCallback);
   }
@@ -87,17 +87,30 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Button variant="success" onClick = {this.handleStartTracking}>Start Tracking</Button>
-        <Button variant="warning" onClick = {this.handleClearAllData}>Clear All Data</Button>
-        { 
-          this.state.data !== null && 
-          <DataChart data={this.state.data} />
-        }
-      </div>
+    <Card className="text-center">
+    <Card.Header>
+    <h3>Argus</h3>
+    <p>Website time-tracking assistant</p>
+    </Card.Header>
+     <Card.Body>
+       <Button variant="success" onClick = {this.handleStartTracking}>Start Tracking</Button>
+       <Button variant="warning" onClick = {this.handleClearAllData}>Clear All Data</Button>
+       <p>
+       {
+        this.state.data !== null &&
+        <DataChart data={this.state.data} />
+       }
+      </p>
+    </Card.Body>
+  <Card.Footer className="text-muted">
+  <small>
+  Icon made by <a href="https://www.freepik.com/">Freepik</a> from <a href="www.flaticon.com">www.flaticon.com</a>
+  </small>
+  </Card.Footer>
+  </Card>
     );
   }
-  
+
 }
 
 export default App;
