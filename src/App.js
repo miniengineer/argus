@@ -2,6 +2,7 @@ import React from 'react';
 import { Component } from 'react';
 import DataChart from './DataChart';
 import Button from 'react-bootstrap/Button';
+import Jumbotron from 'react-bootstrap/Jumbotron';
 
 
 class App extends Component {
@@ -33,9 +34,9 @@ class App extends Component {
     const responseCallback = (response) => {
       this.setState({
         data: response
-      }) 
+      })
     }
-  
+
     // eslint-disable-next-line no-undef
     chrome.runtime.sendMessage(message, responseCallback);
   }
@@ -87,17 +88,24 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Button variant="success" onClick = {this.handleStartTracking}>Start Tracking</Button>
-        <Button variant="warning" onClick = {this.handleClearAllData}>Clear All Data</Button>
-        { 
-          this.state.data !== null && 
+      <Jumbotron>
+      <h1>Hello, world!</h1>
+      <p>
+       This is a simple hero unit, a simple jumbotron-style component for calling
+       extra attention to featured content or information.
+      </p>
+      <p>
+      <Button variant="success" onClick = {this.handleStartTracking}>Start Tracking</Button>
+      <Button variant="warning" onClick = {this.handleClearAllData}>Clear All Data</Button>
+        {
+          this.state.data !== null &&
           <DataChart data={this.state.data} />
         }
-      </div>
+     </p>
+    </Jumbotron>
     );
   }
-  
+
 }
 
 export default App;
