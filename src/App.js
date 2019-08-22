@@ -87,11 +87,8 @@ class App extends Component {
   render() {
     return (
       <Jumbotron>
-      <h1>Hello, world!</h1>
-      <p>
-       This is a simple hero unit, a simple jumbotron-style component for calling
-       extra attention to featured content or information.
-      </p>
+      <h2>Argus</h2>
+      <p class="card-text">Website time-tracking assistant</p>
       <p>
       <Button variant="success" onClick = {this.handleStartTracking}>Start Tracking</Button>
       <Button variant="warning" onClick = {this.handleClearAllData}>Clear All Data</Button>
