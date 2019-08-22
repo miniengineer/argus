@@ -45,7 +45,7 @@ class App extends Component {
     if (!this.isInsideChromePopup()) {
       return;
     }
-    
+
     let getInfo = {
       populate: true
     };
