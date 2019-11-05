@@ -83,17 +83,30 @@ class App extends Component {
 
   }
 
-  handleTrackAll() {
+  handleTrackAll = () => {
     if (!this.isInsideChromePopup()) {
       return;
     }
 
-    let message = {
-      type: "TRACK_ALL"
+    let getInfo = {
+      populate: true
+    };
+
+    function getAllTabs(window) {
+      let allTabsUrls = window.tabs.reduce((acc, tab) => {
+        acc.push(tab.url);
+        return acc;
+      }, []);
+      let message = {
+        type: "TRACK_ALL",
+        url: allTabsUrls
+      }
+      // eslint-disable-next-line no-undef
+      chrome.runtime.sendMessage(message);
     }
 
     // eslint-disable-next-line no-undef
-    chrome.runtime.sendMessage(message);
+    chrome.windows.getCurrent(getInfo, getAllTabs);
   }
 
 

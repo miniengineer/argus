@@ -5,20 +5,26 @@ chrome.runtime.onMessage.addListener(onMessage);
 //depending on message type decide what action to take
 function onMessage(message, sender, sendResponse) {
   switch (message.type) {
-  case "START_TRACKING":
-  {
-    handleStartTracking(message);
-    break;
-  }
-  case "GET_TRACKING_DATA":
-  {
-    handleShowTrackingData().then(sendResponse);
-    return true;
-  }
-  case "CLEAR_TRACKING_DATA":
-  {
-    handleClearData();
-  }
+   case "START_TRACKING":
+    {
+     handleStartTracking(message);
+     break;
+    }
+   case "GET_TRACKING_DATA":
+    {
+     handleShowTrackingData().then(sendResponse);
+     return true;
+    }
+   case "CLEAR_TRACKING_DATA":
+    {
+      handleClearData();
+      break;
+    }
+   case "TRACK_ALL":
+     {
+       handleTrackAll(message.url);
+       break;
+     }
   }
 }
 /* END Handling Messages From Popup */
@@ -44,7 +50,7 @@ function getDomainFromUrl(url) {
   }
 }
 
-//promisified function to send data to chrome storage
+//promisified function which sends data to chrome storage
 function sendDataToStorage(data) {
   return new Promise(resolve => {
     chrome.storage.sync.set(data, function() {
@@ -53,7 +59,7 @@ function sendDataToStorage(data) {
   });
 }
 
-//promisified function to get data from chrome storage
+//promisified function which gets data from chrome storage
 function getDataFromStorage() {
   return new Promise(resolve => {
     chrome.storage.sync.get(null, function(result) {
@@ -103,6 +109,11 @@ async function handleChangedToTrackedDomain(domain) {
     currentlyTrackedDomain.domain = domain;
     startTracking = new Date();
   }
+}
+
+//track all websites
+function handleTrackAll(message) {
+  console.log(message);
 }
 
 //Show Tracking Data
