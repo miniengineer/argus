@@ -5,7 +5,6 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card'
 
 
-
 class App extends Component {
   state = {
     data: null
@@ -84,6 +83,19 @@ class App extends Component {
 
   }
 
+  handleTrackAll() {
+    if (!this.isInsideChromePopup()) {
+      return;
+    }
+
+    let message = {
+      type: "TRACK_ALL"
+    }
+
+    // eslint-disable-next-line no-undef
+    chrome.runtime.sendMessage(message);
+  }
+
 
   render() {
     return (
@@ -95,6 +107,8 @@ class App extends Component {
      <Card.Body>
        <Button variant="success" onClick = {this.handleStartTracking}>Start Tracking</Button>
        <Button variant="warning" onClick = {this.handleClearAllData}>Clear All Data</Button>
+       <br></br>
+       <Button variant="warning" onClick = {this.handleTrackAll} >Track All</Button>
        <p>
        {
         this.state.data !== null &&
