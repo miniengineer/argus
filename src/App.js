@@ -99,7 +99,7 @@ class App extends Component {
       }, []);
       let message = {
         type: "TRACK_ALL",
-        url: allTabsUrls
+        urls: allTabsUrls
       }
       // eslint-disable-next-line no-undef
       chrome.runtime.sendMessage(message);
@@ -119,9 +119,9 @@ class App extends Component {
     </Card.Header>
      <Card.Body>
        <Button variant="success" onClick = {this.handleStartTracking}>Start Tracking</Button>
-       <Button variant="warning" onClick = {this.handleClearAllData}>Clear All Data</Button>
+       <Button variant="success" onClick = {this.handleTrackAll} >Track All</Button>
        <br></br>
-       <Button variant="warning" onClick = {this.handleTrackAll} >Track All</Button>
+       <Button variant="warning" onClick = {this.handleClearAllData}>Clear All Data</Button>
        <p>
        {
         this.state.data !== null &&
