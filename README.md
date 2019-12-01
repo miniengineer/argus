@@ -24,8 +24,11 @@ Once you're done spying on yourself for a day, you can clear all data by clickin
 # Technology Used
 
 -React
+
 -Bootstrap
+
 -Chart.js
+
 -Google Chrome API
 
 # Demo
